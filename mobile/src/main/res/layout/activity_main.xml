@@ -4,7 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.snapshop.ga.snapshop.activity.MainActivity">
+    android:fitsSystemWindows="true">
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/image_capture"-->
+            <!--android:paddingTop="70dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="150dp"-->
+            <!--android:layout_marginLeft="15dp"-->
+            <!--android:adjustViewBounds="false"-->
+            <!--android:scaleType="fitCenter"-->
+            <!--android:src="@drawable/icon" />-->
+
+    <!--</LinearLayout>-->
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </android.support.v4.widget.NestedScrollView>
+
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -14,21 +43,21 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="?actionBarSize"
+            android:theme='@style/AppTheme.PopupOverlay'
+            app:title="@string/app_name" />
 
     </android.support.design.widget.AppBarLayout>
 
-    <include
-        layout="@layout/content_main" />
+    <!--<include-->
+        <!--layout="@layout/content_main" />-->
 
-    <Button
-        android:id="@+id/takePhoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:text="Snap"
-        android:src="@android:drawable/ic_menu_gallery"/>
+    <!--<Button-->
+        <!--android:id="@+id/takePhoto"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom"-->
+        <!--android:text="Snap"-->
+        <!--android:src="@android:drawable/ic_menu_gallery"/>-->
 
 </android.support.design.widget.CoordinatorLayout>

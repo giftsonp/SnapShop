@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private TextView mImageDetails;
     private ImageView mMainImage;
 
     @Override
@@ -82,32 +81,32 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        callSnapShopServer();
 
-        Button btn = (Button) findViewById(R.id.takePhoto);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder
-                        .setMessage(R.string.dialog_select_prompt)
-                        .setPositiveButton(R.string.dialog_select_gallery, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                startGalleryChooser();
-                            }
-                        })
-                        .setNegativeButton(R.string.dialog_select_camera, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                startCamera();
-                            }
-                        });
-                builder.create().show();
-            }
-        });
-
-        mImageDetails = (TextView) findViewById(R.id.image_detail);
-        mMainImage = (ImageView) findViewById(R.id.image_capture);
+//        Button btn = (Button) findViewById(R.id.takePhoto);
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//                builder
+//                        .setMessage(R.string.dialog_select_prompt)
+//                        .setPositiveButton(R.string.dialog_select_gallery, new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                startGalleryChooser();
+//                            }
+//                        })
+//                        .setNegativeButton(R.string.dialog_select_camera, new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                startCamera();
+//                            }
+//                        });
+//                builder.create().show();
+//            }
+//        });
+//
+//        mMainImage = (ImageView) findViewById(R.id.image_capture);
     }
 
     public void startCamera() {
@@ -219,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
 
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<ItemModel>> call, Response<List<ItemModel>> response) {
                 int statusCode = response.code();
                 List<ItemModel> items = response.body();
-                recyclerView.setAdapter(new ItemsAdapter(items, R.layout.item_list, getApplicationContext()));
+                recyclerView.setAdapter(new ItemsAdapter(items, R.layout.activity_main, getApplicationContext()));
             }
 
             @Override
