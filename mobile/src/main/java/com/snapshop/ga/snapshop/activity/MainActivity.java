@@ -37,6 +37,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.snapshop.ga.snapshop.adapter.ItemsAdapter;
+import com.snapshop.ga.snapshop.adapter.ItemsListAdapter;
 import com.snapshop.ga.snapshop.api.ApiClient;
 import com.snapshop.ga.snapshop.api.ApiInterface;
 import com.snapshop.ga.snapshop.models.ItemModel;
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_1);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -216,9 +217,16 @@ public class MainActivity extends AppCompatActivity {
 //
     public void callSnapShopServer() {
 
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
+        final RecyclerView recyclerView_Horizontal = (RecyclerView) findViewById(R.id.recyler_view_horizontal);
+        recyclerView_Horizontal.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
+        recyclerView_Horizontal.setHasFixedSize(true);
+
+        final RecyclerView recyclerView_List = (RecyclerView) findViewById(R.id.recycler_view_new);
+        recyclerView_List.setLayoutManager(new LinearLayoutManager(this));
+
+        final RecyclerView recyclerView_Horizontal2 = (RecyclerView) findViewById(R.id.recyler_view_vertical);
+        recyclerView_Horizontal2.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
+        recyclerView_Horizontal2.setHasFixedSize(true);
 
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
@@ -229,7 +237,10 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<ItemModel>> call, Response<List<ItemModel>> response) {
                 int statusCode = response.code();
                 List<ItemModel> items = response.body();
-                recyclerView.setAdapter(new ItemsAdapter(items, R.layout.activity_main, getApplicationContext()));
+                recyclerView_Horizontal.setAdapter(new ItemsAdapter(items, R.layout.activity_main_1, getApplicationContext()));
+                recyclerView_List.setAdapter(new ItemsListAdapter(items, R.layout.activity_main_1, getApplicationContext()));
+                recyclerView_Horizontal2.setAdapter(new ItemsAdapter(items, R.layout.activity_main_1, getApplicationContext()));
+
             }
 
             @Override

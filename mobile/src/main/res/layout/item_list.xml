@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/items_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_vertical"
-    android:minHeight="72dp"
-    android:orientation="horizontal"
-    android:padding="16dp">
+    android:gravity="center_vertical">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -25,37 +21,30 @@
             android:textColor="@color/colorBlack"
             android:textSize="16sp" />
 
-
-        <TextView
-            android:id="@+id/itemId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="16dp"
-            android:textColor="@color/colorGreyLight" />
+        <!--<TextView-->
+            <!--android:id="@+id/itemId"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingRight="10dp"-->
+            <!--android:textColor="@color/colorGreyLight" />-->
 
         <TextView
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="3"
-            android:paddingRight="16dp"
+            android:paddingRight="10dp"
             android:textColor="@color/colorGreyLight" />
 
-        <TextView
-            android:id="@+id/imageUrl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="3"
-            android:paddingRight="16dp"
-            android:textColor="@color/colorGreyLight" />
-
-        <TextView
-            android:id="@+id/actionUrl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="3"
-            android:paddingRight="16dp"
-            android:textColor="@color/colorGreyLight" />
+        <!--<ImageView-->
+            <!--android:layout_width="88dp"-->
+            <!--android:layout_height="88dp"-->
+            <!--android:id="@+id/imageViewNew"-->
+            <!--android:scaleX="1.2"-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:scaleY="1.2"-->
+            <!--android:layout_gravity="center"-->
+            <!--/>-->
 
     </LinearLayout>
 
@@ -72,7 +61,6 @@
             android:scaleType="centerCrop"
             android:src="@drawable/star"
             android:tint="@color/colorAccent" />
-
 
         <TextView
             android:id="@+id/rating"

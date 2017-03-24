@@ -8,5 +8,9 @@
     <string name="dialog_select_gallery">Gallery</string>
 
     <string name="image_picker_error">Something is wrong with that image. Pick a different one please.</string>
+    <string name="module_1">Module 1</string>
+    <string name="module_2">Module 2</string>
+    <string name="module_3">Module 3</string>
+
 
 </resources>

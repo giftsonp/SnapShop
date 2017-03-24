@@ -22,18 +22,17 @@
 
     <!--</LinearLayout>-->
 
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <!--<android.support.v4.widget.NestedScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <!--<android.support.v7.widget.RecyclerView-->
+            <!--android:id="@+id/recyler_view_horizontal"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
 
-    </android.support.v4.widget.NestedScrollView>
-
+    <!--</android.support.v4.widget.NestedScrollView>-->
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -50,7 +49,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <!--<include-->
-        <!--layout="@layout/content_main" />-->
+        <!--layout="@layout/activity_main_1" />-->
 
     <!--<Button-->
         <!--android:id="@+id/takePhoto"-->
