@@ -221,7 +221,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView_Horizontal.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
         recyclerView_Horizontal.setHasFixedSize(true);
 
-        final RecyclerView recyclerView_List = (RecyclerView) findViewById(R.id.recycler_view_new);
+        final RecyclerView recyclerView_List = (RecyclerView) findViewById(R.id.recycler_view_list);
+        recyclerView_List.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
         recyclerView_List.setLayoutManager(new LinearLayoutManager(this));
 
         final RecyclerView recyclerView_Horizontal2 = (RecyclerView) findViewById(R.id.recyler_view_vertical);

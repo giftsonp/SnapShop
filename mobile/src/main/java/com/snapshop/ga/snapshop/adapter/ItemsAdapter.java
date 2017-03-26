@@ -1,24 +1,18 @@
 package com.snapshop.ga.snapshop.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.snapshop.ga.snapshop.R;
 import com.snapshop.ga.snapshop.models.ItemModel;
 import com.snapshop.ga.snapshop.utils.ImageLoader;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 /**
@@ -60,7 +54,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
     @Override
     public ItemsAdapter.ItemsViewHolder onCreateViewHolder(ViewGroup parent,
                                                             int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_carousal_adapter, parent, false);
         return new ItemsViewHolder(view);
     }
 
