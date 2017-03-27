@@ -9,10 +9,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.JsonObject;
 import com.snapshop.ga.snapshop.R;
+import com.snapshop.ga.snapshop.models.CardModel;
 import com.snapshop.ga.snapshop.models.ItemModel;
 import com.snapshop.ga.snapshop.utils.ImageLoader;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -24,7 +27,6 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
     private List<ItemModel> items;
     private int rowLayout;
     private Context context;
-
 
     public static class ItemsViewHolder extends RecyclerView.ViewHolder {
         LinearLayout itemsLayout;
@@ -42,11 +44,13 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
             price = (TextView) v.findViewById(R.id.itemPrice_1);
             //actionUrl = (TextView) v.findViewById(R.id.actionUrl);
             imageUrl = (ImageView) v.findViewById(R.id.imageView_1);
+
         }
     }
 
-    public ItemsAdapter(List<ItemModel> items, int rowLayout, Context context) {
-        this.items = items;
+    public ItemsAdapter(CardModel cardModel, int rowLayout, Context context) {
+
+        this.items = cardModel.getListOfItems();
         this.rowLayout = rowLayout;
         this.context = context;
     }
@@ -61,6 +65,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
 
     @Override
     public void onBindViewHolder(ItemsViewHolder holder, final int position) {
+
         holder.itemTitleCard.setText(items.get(position).getItemTitle());
         //holder.itemId.setText(items.get(position).getItemId());
         holder.price.setText(items.get(position).getPrice());

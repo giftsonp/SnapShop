@@ -36,16 +36,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
 import com.snapshop.ga.snapshop.adapter.ItemsAdapter;
 import com.snapshop.ga.snapshop.adapter.ItemsListAdapter;
 import com.snapshop.ga.snapshop.api.ApiClient;
 import com.snapshop.ga.snapshop.api.ApiInterface;
+import com.snapshop.ga.snapshop.models.CardModel;
 import com.snapshop.ga.snapshop.models.ItemModel;
+import com.snapshop.ga.snapshop.utils.JsonHelper;
 import com.snapshop.ga.snapshop.utils.PermissionUtil;
 import com.snapshop.ga.snapshop.R;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -232,20 +236,45 @@ public class MainActivity extends AppCompatActivity {
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
 
-        Call<List<ItemModel>> call = apiService.getItems();
-        call.enqueue(new Callback<List<ItemModel>>() {
+//        Call<List<ItemModel>> call = apiService.getItems();
+        Call<JsonObject> call = apiService.getModularResponse();
+        call.enqueue(new Callback<JsonObject> () {
+//            @Override
+//            public void onResponse(Call<List<ItemModel>> call, Response<List<ItemModel>> response) {
+//                int statusCode = response.code();
+//                List<ItemModel> items = response.body();
+//                recyclerView_Horizontal.setAdapter(new ItemsAdapter(items, R.layout.activity_main_1, getApplicationContext()));
+//                recyclerView_List.setAdapter(new ItemsListAdapter(items, R.layout.activity_main_1, getApplicationContext()));
+//                recyclerView_Horizontal2.setAdapter(new ItemsAdapter(items, R.layout.activity_main_1, getApplicationContext()));
+//
+//            }
+
             @Override
-            public void onResponse(Call<List<ItemModel>> call, Response<List<ItemModel>> response) {
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                HashMap<String, CardModel> mapOfCards;
                 int statusCode = response.code();
-                List<ItemModel> items = response.body();
-                recyclerView_Horizontal.setAdapter(new ItemsAdapter(items, R.layout.activity_main_1, getApplicationContext()));
-                recyclerView_List.setAdapter(new ItemsListAdapter(items, R.layout.activity_main_1, getApplicationContext()));
-                recyclerView_Horizontal2.setAdapter(new ItemsAdapter(items, R.layout.activity_main_1, getApplicationContext()));
+
+                mapOfCards = new JsonHelper(response.body().getAsJsonObject("cards")).getCardsMap();
+                //response.body().getAsJsonObject().get("cards").getAsJsonObject().get("card_1");
+                System.out.println(mapOfCards);
+
+                TextView cardModule1Title = (TextView) findViewById(R.id.module1_title);
+                cardModule1Title.setText(mapOfCards.get("card_1").getCardName());
+
+                TextView cardModule2Title = (TextView) findViewById(R.id.module2_title);
+                cardModule2Title.setText(mapOfCards.get("card_2").getCardName());
+
+                TextView cardModule3Title = (TextView) findViewById(R.id.module3_title);
+                cardModule3Title.setText(mapOfCards.get("card_3").getCardName());
+
+                recyclerView_Horizontal.setAdapter(new ItemsAdapter(mapOfCards.get("card_1"), R.layout.activity_main_1, getApplicationContext()));
+                recyclerView_List.setAdapter(new ItemsListAdapter(mapOfCards.get("card_2"), R.layout.activity_main_1, getApplicationContext()));
+                recyclerView_Horizontal2.setAdapter(new ItemsAdapter(mapOfCards.get("card_3"), R.layout.activity_main_1, getApplicationContext()));
 
             }
 
             @Override
-            public void onFailure(Call<List<ItemModel>> call, Throwable t) {
+            public void onFailure(Call<JsonObject> call, Throwable t) {
                 // Log error here since request failed
                 Log.e(TAG, t.toString());
             }

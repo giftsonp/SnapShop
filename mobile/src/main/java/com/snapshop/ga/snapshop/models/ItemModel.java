@@ -27,6 +27,10 @@ public class ItemModel {
         this.actionUrl = actionUrl;
     }
 
+    public ItemModel() {
+
+    }
+
     public String getItemTitle() {
         return itemTitle;
     }
