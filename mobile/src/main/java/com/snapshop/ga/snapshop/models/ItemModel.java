@@ -8,66 +8,33 @@ import com.google.gson.annotations.SerializedName;
 
 public class ItemModel {
 
-    @SerializedName("itemTitle")
-    private String itemTitle;
-    @SerializedName("itemId")
-    private String itemId;
-    @SerializedName("price")
-    private String price;
-    @SerializedName("imageUrl")
-    private String imageUrl;
-    @SerializedName("actionUrl")
-    private String actionUrl;
+    @SerializedName("storeUrl")
+    private String storeUrl;
+    @SerializedName("storeName")
+    private String storeName;
 
-    public ItemModel(String itemTitle, String itemId, String price, String imageUrl, String actionUrl) {
-        this.itemTitle = itemTitle;
-        this.itemId = itemId;
-        this.price = price;
-        this.imageUrl = imageUrl;
-        this.actionUrl = actionUrl;
+    public ItemModel(String storeUrl, String storeName, String actionUrl) {
+        this.storeName = storeName;
+        this.storeUrl = storeUrl;
     }
 
     public ItemModel() {
 
     }
 
-    public String getItemTitle() {
-        return itemTitle;
+    public String getStoreUrl() {
+        return storeUrl;
     }
 
-    public void setItemTitle(String itemTitle) {
-        this.itemTitle = itemTitle;
+    public void setStoreUrl(String storeUrl) {
+        this.storeUrl = storeUrl;
     }
 
-    public String getItemId() {
-        return itemId;
+    public String getStoreName() {
+        return storeName;
     }
 
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public String getActionUrl() {
-        return actionUrl;
-    }
-
-    public void setActionUrl(String actionUrl) {
-        this.actionUrl = actionUrl;
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
     }
 }

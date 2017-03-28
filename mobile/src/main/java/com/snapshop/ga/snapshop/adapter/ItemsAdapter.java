@@ -30,27 +30,23 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
 
     public static class ItemsViewHolder extends RecyclerView.ViewHolder {
         LinearLayout itemsLayout;
-        TextView itemTitleCard;
-        TextView itemId;
-        TextView price;
-        TextView actionUrl;
+        TextView storeName;
+        TextView storeUrl;
         ImageView imageUrl;
 
         public ItemsViewHolder(View v) {
             super(v);
             itemsLayout = (LinearLayout) v.findViewById(R.id.items_layout_1);
-            itemTitleCard = (TextView) v.findViewById(R.id.itemTitleCard_1);
-            //itemId = (TextView) v.findViewById(R.id.itemId);
-            price = (TextView) v.findViewById(R.id.itemPrice_1);
-            //actionUrl = (TextView) v.findViewById(R.id.actionUrl);
-            imageUrl = (ImageView) v.findViewById(R.id.imageView_1);
+            storeName = (TextView) v.findViewById(R.id.store_name_carousal);
+            storeUrl = (TextView) v.findViewById(R.id.action_url_carousal);
+//            imageUrl = (ImageView) v.findViewById(R.id.image_carousal);
 
         }
     }
 
     public ItemsAdapter(CardModel cardModel, int rowLayout, Context context) {
 
-        this.items = cardModel.getListOfItems();
+        this.items = cardModel.getListOfCards();
         this.rowLayout = rowLayout;
         this.context = context;
     }
@@ -66,12 +62,10 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
     @Override
     public void onBindViewHolder(ItemsViewHolder holder, final int position) {
 
-        holder.itemTitleCard.setText(items.get(position).getItemTitle());
-        //holder.itemId.setText(items.get(position).getItemId());
-        holder.price.setText(items.get(position).getPrice());
-        //holder.actionUrl.setText(items.get(position).getActionUrl());
+        holder.storeName.setText(items.get(position).getStoreName());
+        holder.storeUrl.setText(items.get(position).getStoreUrl());
 
-        new ImageLoader(holder.imageUrl).execute(items.get(position).getImageUrl());
+        //new ImageLoader(holder.imageUrl).execute(items.get(position).getImageUrl());
 //        /holder.imageUrl.setImageBitmap(new ImageLoader(iv).execute(items.get(position).getPrice()));
     }
 

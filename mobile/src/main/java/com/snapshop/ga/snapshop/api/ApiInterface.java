@@ -2,6 +2,7 @@ package com.snapshop.ga.snapshop.api;
 
 import com.google.gson.JsonObject;
 import com.snapshop.ga.snapshop.models.ItemModel;
+import com.snapshop.ga.snapshop.models.MainModel;
 
 import java.util.List;
 
@@ -17,6 +18,6 @@ public interface ApiInterface {
     @GET("TestServlet")
     Call<List<ItemModel>> getItems();
 
-    @GET("TestServlet")
-    Call<JsonObject> getModularResponse();
+    @GET("SnapAndFind")
+    Call<MainModel> getModularResponse();
 }

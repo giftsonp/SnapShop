@@ -43,6 +43,7 @@ import com.snapshop.ga.snapshop.api.ApiClient;
 import com.snapshop.ga.snapshop.api.ApiInterface;
 import com.snapshop.ga.snapshop.models.CardModel;
 import com.snapshop.ga.snapshop.models.ItemModel;
+import com.snapshop.ga.snapshop.models.MainModel;
 import com.snapshop.ga.snapshop.utils.JsonHelper;
 import com.snapshop.ga.snapshop.utils.PermissionUtil;
 import com.snapshop.ga.snapshop.R;
@@ -237,8 +238,8 @@ public class MainActivity extends AppCompatActivity {
                 ApiClient.getClient().create(ApiInterface.class);
 
 //        Call<List<ItemModel>> call = apiService.getItems();
-        Call<JsonObject> call = apiService.getModularResponse();
-        call.enqueue(new Callback<JsonObject> () {
+        Call<MainModel> call = apiService.getModularResponse();
+        call.enqueue(new Callback<MainModel> () {
 //            @Override
 //            public void onResponse(Call<List<ItemModel>> call, Response<List<ItemModel>> response) {
 //                int statusCode = response.code();
@@ -250,11 +251,10 @@ public class MainActivity extends AppCompatActivity {
 //            }
 
             @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+            public void onResponse(Call<MainModel> call, Response<MainModel> response) {
                 HashMap<String, CardModel> mapOfCards;
                 int statusCode = response.code();
-
-                mapOfCards = new JsonHelper(response.body().getAsJsonObject("cards")).getCardsMap();
+                mapOfCards = new JsonHelper(response.body()).getCardsMap();
                 //response.body().getAsJsonObject().get("cards").getAsJsonObject().get("card_1");
                 System.out.println(mapOfCards);
 
@@ -274,7 +274,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
+            public void onFailure(Call<MainModel> call, Throwable t) {
                 // Log error here since request failed
                 Log.e(TAG, t.toString());
             }
