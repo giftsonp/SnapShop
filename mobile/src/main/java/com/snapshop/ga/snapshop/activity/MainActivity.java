@@ -256,7 +256,6 @@ public class MainActivity extends AppCompatActivity {
                 int statusCode = response.code();
                 mapOfCards = new JsonHelper(response.body()).getCardsMap();
                 //response.body().getAsJsonObject().get("cards").getAsJsonObject().get("card_1");
-                System.out.println(mapOfCards);
 
                 TextView cardModule1Title = (TextView) findViewById(R.id.module1_title);
                 cardModule1Title.setText(mapOfCards.get("card_1").getCardName());

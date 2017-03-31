@@ -1,6 +1,8 @@
 package com.snapshop.ga.snapshop.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +28,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
 
     private List<ItemModel> items;
     private int rowLayout;
-    private Context context;
+    private final Context context;
 
     public static class ItemsViewHolder extends RecyclerView.ViewHolder {
         LinearLayout itemsLayout;
@@ -42,9 +44,11 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
 //            imageUrl = (ImageView) v.findViewById(R.id.image_carousal);
 
         }
+
+
     }
 
-    public ItemsAdapter(CardModel cardModel, int rowLayout, Context context) {
+    public ItemsAdapter(CardModel cardModel, int rowLayout, final Context context) {
 
         this.items = cardModel.getListOfCards();
         this.rowLayout = rowLayout;
@@ -65,6 +69,16 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
         holder.storeName.setText(items.get(position).getStoreName());
         holder.storeUrl.setText(items.get(position).getStoreUrl());
 
+        holder.storeUrl.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse(items.get(position).getStoreUrl()));
+                context.startActivity(intent);
+            } });
+
         //new ImageLoader(holder.imageUrl).execute(items.get(position).getImageUrl());
 //        /holder.imageUrl.setImageBitmap(new ImageLoader(iv).execute(items.get(position).getPrice()));
     }
@@ -73,4 +87,6 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
     public int getItemCount() {
         return items.size();
     }
+
+
 }
