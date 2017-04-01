@@ -12,14 +12,25 @@ public class ItemModel {
     private String storeUrl;
     @SerializedName("storeName")
     private String storeName;
+    @SerializedName("imageUrl")
+    private String imageUrl;
 
-    public ItemModel(String storeUrl, String storeName, String actionUrl) {
+    public ItemModel(String storeUrl, String storeName, String actionUrl, String imageUrl) {
         this.storeName = storeName;
         this.storeUrl = storeUrl;
+        this.imageUrl = imageUrl;
     }
 
     public ItemModel() {
 
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getStoreUrl() {

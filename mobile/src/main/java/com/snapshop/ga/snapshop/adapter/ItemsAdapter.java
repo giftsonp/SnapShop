@@ -37,6 +37,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
         TextView storeUrl;
         CardView carousalCard;
         ImageView imageUrl;
+        ImageView storeLogo;
 
         public ItemsViewHolder(View v) {
             super(v);
@@ -45,6 +46,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
 //            storeUrl = (TextView) v.findViewById(R.id.action_url_carousal);
             carousalCard = (CardView) v.findViewById(R.id.card_carousal);
             imageUrl = (ImageView) v.findViewById(R.id.image_carousal);
+            storeLogo = (ImageView) v.findViewById(R.id.image_carousal_store_logo);
 
         }
 
@@ -70,7 +72,9 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
     public void onBindViewHolder(ItemsViewHolder holder, final int position) {
 
         holder.storeName.setText(items.get(position).getStoreName());
-       new ImageLoader(holder.imageUrl).execute("http://logo.clearbit.com/"+items.get(position).getStoreName());
+        new ImageLoader(holder.imageUrl).execute(items.get(position).getImageUrl());
+        new ImageLoader(holder.storeLogo).execute("http://logo.clearbit.com/"+items.get(position).getStoreName());
+
 //        holder.storeUrl.setText(items.get(position).getStoreUrl());
 
         holder.carousalCard.setOnClickListener(new View.OnClickListener() {

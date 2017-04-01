@@ -30,6 +30,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -88,10 +91,14 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         callSnapShopServer();
 
-//        Button btn = (Button) findViewById(R.id.takePhoto);
+//
+//        Button btn = (Button) findViewById(R.id.action_settings);
+//        //R.id.action_settings
 //        btn.setOnClickListener(new View.OnClickListener() {
+//
 //            @Override
 //            public void onClick(View view) {
 //                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -112,8 +119,25 @@ public class MainActivity extends AppCompatActivity {
 //                builder.create().show();
 //            }
 //        });
-//
-//        mMainImage = (ImageView) findViewById(R.id.image_capture);
+
+        mMainImage = (ImageView) findViewById(R.id.image_capture);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void startCamera() {
@@ -269,7 +293,7 @@ public class MainActivity extends AppCompatActivity {
 
                 recyclerView_Horizontal.setAdapter(new ItemsAdapter(mapOfCards.get("card_1"), R.layout.activity_main_1, getApplicationContext()));
                 recyclerView_List.setAdapter(new ItemsListAdapter(mapOfCards.get("card_2"), R.layout.activity_main_1, getApplicationContext()));
-                recyclerView_Horizontal2.setAdapter(new ItemsAdapter(mapOfCards.get("card_3"), R.layout.activity_main_1, getApplicationContext()));
+//                recyclerView_Horizontal2.setAdapter(new ItemsAdapter(mapOfCards.get("card_3"), R.layout.activity_main_1, getApplicationContext()));
 
 
                 Button myButton;
@@ -296,4 +320,24 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void openCamera(MenuItem item){
+        //Toast.makeText(this, "Hello World", Toast.LENGTH_LONG).show();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder
+                .setMessage(R.string.dialog_select_prompt)
+                .setPositiveButton(R.string.dialog_select_gallery, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startGalleryChooser();
+                    }
+                })
+                .setNegativeButton(R.string.dialog_select_camera, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startCamera();
+                    }
+                });
+        builder.create().show();
+    }
 }
