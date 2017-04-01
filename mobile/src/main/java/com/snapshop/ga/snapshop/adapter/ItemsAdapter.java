@@ -3,6 +3,7 @@ package com.snapshop.ga.snapshop.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,14 +35,16 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
         LinearLayout itemsLayout;
         TextView storeName;
         TextView storeUrl;
+        CardView carousalCard;
         ImageView imageUrl;
 
         public ItemsViewHolder(View v) {
             super(v);
             itemsLayout = (LinearLayout) v.findViewById(R.id.items_layout_1);
             storeName = (TextView) v.findViewById(R.id.store_name_carousal);
-            storeUrl = (TextView) v.findViewById(R.id.action_url_carousal);
-//            imageUrl = (ImageView) v.findViewById(R.id.image_carousal);
+//            storeUrl = (TextView) v.findViewById(R.id.action_url_carousal);
+            carousalCard = (CardView) v.findViewById(R.id.card_carousal);
+            imageUrl = (ImageView) v.findViewById(R.id.image_carousal);
 
         }
 
@@ -67,9 +70,10 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
     public void onBindViewHolder(ItemsViewHolder holder, final int position) {
 
         holder.storeName.setText(items.get(position).getStoreName());
-        holder.storeUrl.setText(items.get(position).getStoreUrl());
+       new ImageLoader(holder.imageUrl).execute("http://logo.clearbit.com/"+items.get(position).getStoreName());
+//        holder.storeUrl.setText(items.get(position).getStoreUrl());
 
-        holder.storeUrl.setOnClickListener(new View.OnClickListener() {
+        holder.carousalCard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

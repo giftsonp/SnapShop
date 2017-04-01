@@ -33,6 +33,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +44,6 @@ import com.snapshop.ga.snapshop.adapter.ItemsListAdapter;
 import com.snapshop.ga.snapshop.api.ApiClient;
 import com.snapshop.ga.snapshop.api.ApiInterface;
 import com.snapshop.ga.snapshop.models.CardModel;
-import com.snapshop.ga.snapshop.models.ItemModel;
 import com.snapshop.ga.snapshop.models.MainModel;
 import com.snapshop.ga.snapshop.utils.JsonHelper;
 import com.snapshop.ga.snapshop.utils.PermissionUtil;
@@ -269,6 +270,21 @@ public class MainActivity extends AppCompatActivity {
                 recyclerView_Horizontal.setAdapter(new ItemsAdapter(mapOfCards.get("card_1"), R.layout.activity_main_1, getApplicationContext()));
                 recyclerView_List.setAdapter(new ItemsListAdapter(mapOfCards.get("card_2"), R.layout.activity_main_1, getApplicationContext()));
                 recyclerView_Horizontal2.setAdapter(new ItemsAdapter(mapOfCards.get("card_3"), R.layout.activity_main_1, getApplicationContext()));
+
+
+                Button myButton;
+                LinearLayout scrViewButLay = (LinearLayout) findViewById(R.id.buttonLayout);
+               // LinearLayout ll = (LinearLayout) findViewById(R.id.buttonLayout);
+                Button[] keywordBtns = new Button[response.body().getListOfKeywords().size()];
+
+                for(int index = 0; index < response.body().getListOfKeywords().size(); index++){
+
+                    keywordBtns[index] = new Button(getApplicationContext());
+                    keywordBtns[index].setText(response.body().getListOfKeywords().get(index));
+
+                    scrViewButLay.addView(keywordBtns[index]);
+                }
+
 
             }
 
